@@ -1,0 +1,44 @@
+@model AIProject.Models.AccountViewModels.ImpersonateViewModel
+@{
+    ViewData["Title"] = "Impersonate user";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p class="text-muted">You are signed in as <strong>@Model.AdminEmail</strong>. Select a user to impersonate.</p>
+
+@if (!Model.Users.Any())
+{
+    <div class="alert alert-info">There are no other users available to impersonate.</div>
+}
+else
+{
+    <form asp-action="Impersonate" method="post" class="mb-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label for="SelectedUserId" class="form-label">Choose a user</label>
+            <select asp-for="SelectedUserId" class="form-select" asp-items="@(new SelectList(Model.Users, nameof(UserSummaryViewModel.Id), nameof(UserSummaryViewModel.Email)))">
+                <option value="">-- Select a user --</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Impersonate</button>
+    </form>
+
+    <h2 class="h5">Existing users</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@(string.IsNullOrEmpty(user.Roles) ? "(none)" : user.Roles)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

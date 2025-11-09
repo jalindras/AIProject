@@ -4,5 +4,32 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <p class="lead">You are signed in as <strong>@User.Identity?.Name</strong>.</p>
+        if (User.HasClaim(c => c.Type == "ImpersonatorId"))
+        {
+            <p class="text-warning">You are currently impersonating another account.</p>
+        }
+    }
+    else
+    {
+        <p class="lead">Register or log in to explore the user management features.</p>
+    }
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="h5">Getting started</h2>
+                <p>Use the navigation bar to register, sign in, and manage passwords.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Admin account:</strong> admin@example.com / Admin#12345</li>
+                    <li>Admins can impersonate other users from the <em>Impersonate</em> link.</li>
+                    <li>Use the <em>Forgot password</em> link to generate reset URLs directly in the app.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
