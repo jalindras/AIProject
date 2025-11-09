@@ -13,7 +13,7 @@ var dataDirectory = Path.Combine(builder.Environment.ContentRootPath, "App_Data"
 Directory.CreateDirectory(dataDirectory);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
