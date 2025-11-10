@@ -1,0 +1,26 @@
+@model AIProject.Models.Customer
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="alert alert-warning">
+    <h4 class="alert-heading">Are you sure?</h4>
+    <p>You are about to permanently delete the customer profile for <strong>@Model.FirstName @Model.LastName</strong>. This action cannot be undone.</p>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Email</dd>
+    <dt class="col-sm-3">Phone</dt>
+    <dd class="col-sm-9">@Model.PhoneNumber</dd>
+    <dt class="col-sm-3">Company</dt>
+    <dd class="col-sm-9">@Model.CompanyName</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+</form>

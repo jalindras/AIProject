@@ -1,0 +1,145 @@
+@model AIProject.Models.Customer
+<div class="row g-3">
+    <div class="col-md-4">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="MiddleName" class="form-label"></label>
+        <input asp-for="MiddleName" class="form-control" />
+        <span asp-validation-for="MiddleName" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="AlternatePhoneNumber" class="form-label"></label>
+        <input asp-for="AlternatePhoneNumber" class="form-control" />
+        <span asp-validation-for="AlternatePhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" class="form-control" type="date" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Gender" class="form-label"></label>
+        <select asp-for="Gender" class="form-select">
+            <option value="">Select gender</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-binary</option>
+            <option>Prefer not to say</option>
+            <option>Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="PreferredLanguage" class="form-label"></label>
+        <input asp-for="PreferredLanguage" class="form-control" />
+        <span asp-validation-for="PreferredLanguage" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CompanyName" class="form-label"></label>
+        <input asp-for="CompanyName" class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="JobTitle" class="form-label"></label>
+        <input asp-for="JobTitle" class="form-control" />
+        <span asp-validation-for="JobTitle" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Industry" class="form-label"></label>
+        <input asp-for="Industry" class="form-control" />
+        <span asp-validation-for="Industry" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="WebsiteUrl" class="form-label"></label>
+        <input asp-for="WebsiteUrl" class="form-control" type="url" />
+        <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="PreferredContactMethod" class="form-label"></label>
+        <select asp-for="PreferredContactMethod" class="form-select">
+            <option value="">Select method</option>
+            <option>Email</option>
+            <option>Phone</option>
+            <option>SMS</option>
+            <option>Video call</option>
+            <option>In-person</option>
+        </select>
+        <span asp-validation-for="PreferredContactMethod" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="PreferredContactTime" class="form-label"></label>
+        <input asp-for="PreferredContactTime" class="form-control" placeholder="e.g. Weekdays after 3pm" />
+        <span asp-validation-for="PreferredContactTime" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="AddressLine1" class="form-label"></label>
+        <input asp-for="AddressLine1" class="form-control" />
+        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="AddressLine2" class="form-label"></label>
+        <input asp-for="AddressLine2" class="form-control" />
+        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="City" class="form-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="StateOrProvince" class="form-label"></label>
+        <input asp-for="StateOrProvince" class="form-control" />
+        <span asp-validation-for="StateOrProvince" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="PostalCode" class="form-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Country" class="form-label"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="LoyaltyNumber" class="form-label"></label>
+        <input asp-for="LoyaltyNumber" class="form-control" />
+        <span asp-validation-for="LoyaltyNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Anniversary" class="form-label"></label>
+        <input asp-for="Anniversary" class="form-control" type="date" />
+        <span asp-validation-for="Anniversary" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+    <div class="col-md-3 form-check ms-2">
+        <input asp-for="MarketingOptIn" class="form-check-input" />
+        <label asp-for="MarketingOptIn" class="form-check-label"></label>
+    </div>
+    <div class="col-md-3 form-check ms-2">
+        <input asp-for="IsVip" class="form-check-input" />
+        <label asp-for="IsVip" class="form-check-label"></label>
+    </div>
+</div>
