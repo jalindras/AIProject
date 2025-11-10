@@ -1,0 +1,102 @@
+@model AIProject.Models.Customer
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<partial name="_StatusMessage" />
+
+<div class="mb-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">Edit</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Contact Information</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Full name</dt>
+                    <dd class="col-sm-8">@Model.FirstName @Model.MiddleName @Model.LastName</dd>
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.Email</dd>
+                    <dt class="col-sm-4">Phone</dt>
+                    <dd class="col-sm-8">@Model.PhoneNumber</dd>
+                    <dt class="col-sm-4">Alt. phone</dt>
+                    <dd class="col-sm-8">@Model.AlternatePhoneNumber</dd>
+                    <dt class="col-sm-4">Preferred method</dt>
+                    <dd class="col-sm-8">@Model.PreferredContactMethod</dd>
+                    <dt class="col-sm-4">Preferred time</dt>
+                    <dd class="col-sm-8">@Model.PreferredContactTime</dd>
+                    <dt class="col-sm-4">Language</dt>
+                    <dd class="col-sm-8">@Model.PreferredLanguage</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Profile</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Date of birth</dt>
+                    <dd class="col-sm-8">@Model.DateOfBirth?.ToString("D")</dd>
+                    <dt class="col-sm-4">Gender</dt>
+                    <dd class="col-sm-8">@Model.Gender</dd>
+                    <dt class="col-sm-4">Anniversary</dt>
+                    <dd class="col-sm-8">@Model.Anniversary?.ToString("D")</dd>
+                    <dt class="col-sm-4">Loyalty number</dt>
+                    <dd class="col-sm-8">@Model.LoyaltyNumber</dd>
+                    <dt class="col-sm-4">Marketing opt-in</dt>
+                    <dd class="col-sm-8">@(Model.MarketingOptIn ? "Yes" : "No")</dd>
+                    <dt class="col-sm-4">VIP</dt>
+                    <dd class="col-sm-8">@(Model.IsVip ? "Yes" : "No")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Company</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Company</dt>
+                    <dd class="col-sm-8">@Model.CompanyName</dd>
+                    <dt class="col-sm-4">Job title</dt>
+                    <dd class="col-sm-8">@Model.JobTitle</dd>
+                    <dt class="col-sm-4">Industry</dt>
+                    <dd class="col-sm-8">@Model.Industry</dd>
+                    <dt class="col-sm-4">Website</dt>
+                    <dd class="col-sm-8">@Model.WebsiteUrl</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Address</div>
+            <div class="card-body">
+                <address class="mb-0">
+                    @Model.AddressLine1<br />
+                    @Model.AddressLine2<br />
+                    @Model.City, @Model.StateOrProvince @Model.PostalCode<br />
+                    @Model.Country
+                </address>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">Notes</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Notes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 text-muted">
+    <small>Created @Model.CreatedAtUtc.ToLocalTime().ToString("f") &bull; Last updated @Model.UpdatedAtUtc.ToLocalTime().ToString("f")</small>
+</div>

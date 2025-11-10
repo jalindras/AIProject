@@ -1,0 +1,70 @@
+@model IEnumerable<AIProject.Models.Customer>
+@{
+    ViewData["Title"] = "Customers";
+    var search = ViewData["Search"] as string;
+}
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+<partial name="_StatusMessage" />
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-md-6">
+                <label for="search" class="form-label">Search customers</label>
+                <input type="text" name="search" id="search" value="@search" class="form-control" placeholder="Search by name, email, or phone" />
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Reset</a>
+            </div>
+            <div class="col-md-3 text-md-end">
+                <a asp-action="Create" class="btn btn-success">Register Customer</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No customers have been registered yet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Company</th>
+                    <th>Preferred Contact</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@customer.Id">
+                            @customer.FirstName @customer.LastName
+                        </a>
+                    </td>
+                    <td>@customer.Email</td>
+                    <td>@customer.PhoneNumber</td>
+                    <td>@customer.CompanyName</td>
+                    <td>@customer.PreferredContactMethod</td>
+                    <td>@customer.CreatedAtUtc.ToLocalTime().ToString("g")</td>
+                    <td class="text-end">
+                        <a asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@customer.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
