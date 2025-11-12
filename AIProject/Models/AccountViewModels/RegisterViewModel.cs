@@ -1,9 +1,27 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace AIProject.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Birth date")]
+        public DateTime BirthDate { get; set; } = DateTime.Today;
+
+        [Required]
+        [Display(Name = "Department")]
+        public string Department { get; set; } = string.Empty;
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

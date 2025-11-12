@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using AIProject.Models;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +24,12 @@ namespace AIProject.Data
                 await roleManager.CreateAsync(new IdentityRole(adminRole));
             }
 
+            const string customerRole = "Customer";
+            if (!await roleManager.RoleExistsAsync(customerRole))
+            {
+                await roleManager.CreateAsync(new IdentityRole(customerRole));
+            }
+
             const string adminEmail = "admin@example.com";
             const string adminPassword = "Admin#12345";
 
@@ -33,7 +40,11 @@ namespace AIProject.Data
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    FirstName = "System",
+                    LastName = "Administrator",
+                    BirthDate = new DateTime(2000, 1, 1),
+                    Department = "Administration"
                 };
 
                 var createResult = await userManager.CreateAsync(adminUser, adminPassword);
@@ -41,6 +52,18 @@ namespace AIProject.Data
                 {
                     throw new InvalidOperationException($"Failed to create seed administrator: {string.Join(", ", createResult.Errors.Select(e => e.Description))}");
                 }
+            }
+
+            if (string.IsNullOrWhiteSpace(adminUser.FirstName)
+                || string.IsNullOrWhiteSpace(adminUser.LastName)
+                || string.IsNullOrWhiteSpace(adminUser.Department)
+                || adminUser.BirthDate == default)
+            {
+                adminUser.FirstName = string.IsNullOrWhiteSpace(adminUser.FirstName) ? "System" : adminUser.FirstName;
+                adminUser.LastName = string.IsNullOrWhiteSpace(adminUser.LastName) ? "Administrator" : adminUser.LastName;
+                adminUser.Department = string.IsNullOrWhiteSpace(adminUser.Department) ? "Administration" : adminUser.Department;
+                adminUser.BirthDate = adminUser.BirthDate == default ? new DateTime(2000, 1, 1) : adminUser.BirthDate;
+                await userManager.UpdateAsync(adminUser);
             }
 
             if (!await userManager.IsInRoleAsync(adminUser, adminRole))

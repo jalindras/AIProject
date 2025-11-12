@@ -45,11 +45,32 @@ namespace AIProject.Controllers
                 return View(model);
             }
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                EmailConfirmed = true,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BirthDate = model.BirthDate,
+                Department = model.Department
+            };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
                 _logger.LogInformation("User {Email} created a new account.", model.Email);
+                var roleResult = await _userManager.AddToRoleAsync(user, "Customer");
+                if (!roleResult.Succeeded)
+                {
+                    foreach (var error in roleResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+
+                    await _userManager.DeleteAsync(user);
+                    return View(model);
+                }
+
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
