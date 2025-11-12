@@ -16,6 +16,9 @@ namespace AIProject.Data
 
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Gauge> Gauges => Set<Gauge>();
+        public DbSet<GenderOption> GenderOptions => Set<GenderOption>();
+        public DbSet<PreferredContactMethodOption> PreferredContactMethodOptions => Set<PreferredContactMethodOption>();
+        public DbSet<PreferredLanguageOption> PreferredLanguageOptions => Set<PreferredLanguageOption>();
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
