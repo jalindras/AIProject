@@ -36,21 +36,18 @@
         <span asp-validation-for="DateOfBirth" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="Gender" class="form-label"></label>
-        <select asp-for="Gender" class="form-select">
+        <label asp-for="GenderOptionId" class="form-label"></label>
+        <select asp-for="GenderOptionId" class="form-select" asp-items="@(ViewBag.GenderOptions as IEnumerable<SelectListItem>)">
             <option value="">Select gender</option>
-            <option>Female</option>
-            <option>Male</option>
-            <option>Non-binary</option>
-            <option>Prefer not to say</option>
-            <option>Other</option>
         </select>
-        <span asp-validation-for="Gender" class="text-danger"></span>
+        <span asp-validation-for="GenderOptionId" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="PreferredLanguage" class="form-label"></label>
-        <input asp-for="PreferredLanguage" class="form-control" />
-        <span asp-validation-for="PreferredLanguage" class="text-danger"></span>
+        <label asp-for="PreferredLanguageOptionId" class="form-label"></label>
+        <select asp-for="PreferredLanguageOptionId" class="form-select" asp-items="@(ViewBag.PreferredLanguageOptions as IEnumerable<SelectListItem>)">
+            <option value="">Select language</option>
+        </select>
+        <span asp-validation-for="PreferredLanguageOptionId" class="text-danger"></span>
     </div>
     <div class="col-md-6">
         <label asp-for="CompanyName" class="form-label"></label>
@@ -73,16 +70,11 @@
         <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
     </div>
     <div class="col-md-6">
-        <label asp-for="PreferredContactMethod" class="form-label"></label>
-        <select asp-for="PreferredContactMethod" class="form-select">
+        <label asp-for="PreferredContactMethodOptionId" class="form-label"></label>
+        <select asp-for="PreferredContactMethodOptionId" class="form-select" asp-items="@(ViewBag.PreferredContactMethodOptions as IEnumerable<SelectListItem>)">
             <option value="">Select method</option>
-            <option>Email</option>
-            <option>Phone</option>
-            <option>SMS</option>
-            <option>Video call</option>
-            <option>In-person</option>
         </select>
-        <span asp-validation-for="PreferredContactMethod" class="text-danger"></span>
+        <span asp-validation-for="PreferredContactMethodOptionId" class="text-danger"></span>
     </div>
     <div class="col-md-6">
         <label asp-for="PreferredContactTime" class="form-label"></label>

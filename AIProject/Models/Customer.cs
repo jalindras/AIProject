@@ -33,8 +33,9 @@ namespace AIProject.Models
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
-        [StringLength(50)]
-        public string? Gender { get; set; }
+        public int? GenderOptionId { get; set; }
+
+        public GenderOption? GenderOption { get; set; }
 
         [StringLength(250)]
         public string? CompanyName { get; set; }
@@ -67,14 +68,16 @@ namespace AIProject.Models
         [StringLength(100)]
         public string? Country { get; set; }
 
-        [StringLength(100)]
-        public string? PreferredContactMethod { get; set; }
+        public int? PreferredContactMethodOptionId { get; set; }
+
+        public PreferredContactMethodOption? PreferredContactMethodOption { get; set; }
 
         [StringLength(100)]
         public string? PreferredContactTime { get; set; }
 
-        [StringLength(100)]
-        public string? PreferredLanguage { get; set; }
+        public int? PreferredLanguageOptionId { get; set; }
+
+        public PreferredLanguageOption? PreferredLanguageOption { get; set; }
 
         [StringLength(100)]
         public string? LoyaltyNumber { get; set; }

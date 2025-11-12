@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AIProject.Data;
 using AIProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace AIProject.Controllers
@@ -18,7 +19,11 @@ namespace AIProject.Controllers
 
         public async Task<IActionResult> Index(string? search)
         {
-            var query = _context.Customers.AsNoTracking();
+            var query = _context.Customers
+                .AsNoTracking()
+                .Include(c => c.GenderOption)
+                .Include(c => c.PreferredContactMethodOption)
+                .Include(c => c.PreferredLanguageOption);
 
             if (!string.IsNullOrWhiteSpace(search))
             {
@@ -47,6 +52,9 @@ namespace AIProject.Controllers
 
             var customer = await _context.Customers
                 .AsNoTracking()
+                .Include(c => c.GenderOption)
+                .Include(c => c.PreferredContactMethodOption)
+                .Include(c => c.PreferredLanguageOption)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customer == null)
             {
@@ -56,8 +64,9 @@ namespace AIProject.Controllers
             return View(customer);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await PopulateSelectListsAsync();
             return View(new Customer
             {
                 MarketingOptIn = true
@@ -70,6 +79,7 @@ namespace AIProject.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await PopulateSelectListsAsync();
                 return View(customer);
             }
 
@@ -92,6 +102,7 @@ namespace AIProject.Controllers
                 return NotFound();
             }
 
+            await PopulateSelectListsAsync();
             return View(customer);
         }
 
@@ -106,6 +117,7 @@ namespace AIProject.Controllers
 
             if (!ModelState.IsValid)
             {
+                await PopulateSelectListsAsync();
                 return View(customer);
             }
 
@@ -164,6 +176,39 @@ namespace AIProject.Controllers
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.Id == id);
+        }
+
+        private async Task PopulateSelectListsAsync()
+        {
+            ViewData["GenderOptions"] = await _context.GenderOptions
+                .AsNoTracking()
+                .OrderBy(option => option.Name)
+                .Select(option => new SelectListItem
+                {
+                    Text = option.Name,
+                    Value = option.Id.ToString()
+                })
+                .ToListAsync();
+
+            ViewData["PreferredContactMethodOptions"] = await _context.PreferredContactMethodOptions
+                .AsNoTracking()
+                .OrderBy(option => option.Name)
+                .Select(option => new SelectListItem
+                {
+                    Text = option.Name,
+                    Value = option.Id.ToString()
+                })
+                .ToListAsync();
+
+            ViewData["PreferredLanguageOptions"] = await _context.PreferredLanguageOptions
+                .AsNoTracking()
+                .OrderBy(option => option.Name)
+                .Select(option => new SelectListItem
+                {
+                    Text = option.Name,
+                    Value = option.Id.ToString()
+                })
+                .ToListAsync();
         }
     }
 }
