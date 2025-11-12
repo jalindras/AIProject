@@ -1,0 +1,129 @@
+@model AIProject.Models.Gauge
+
+@{
+    ViewData["Title"] = "Gauge Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<partial name="_StatusMessage" />
+
+<div class="mb-3 d-flex gap-2">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">General</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Serial No</dt>
+                    <dd class="col-sm-7">@Model.SerialNumber</dd>
+                    <dt class="col-sm-5">Customer</dt>
+                    <dd class="col-sm-7">@Model.Customer?.FirstName @Model.Customer?.LastName</dd>
+                    <dt class="col-sm-5">Type / Sub Type</dt>
+                    <dd class="col-sm-7">@Model.Type @Model.SubType</dd>
+                    <dt class="col-sm-5">Gauge Type</dt>
+                    <dd class="col-sm-7">@Model.GaugeType</dd>
+                    <dt class="col-sm-5">UUT</dt>
+                    <dd class="col-sm-7">@Model.Uut</dd>
+                    <dt class="col-sm-5">Status</dt>
+                    <dd class="col-sm-7">@Model.Status</dd>
+                    <dt class="col-sm-5">Owner</dt>
+                    <dd class="col-sm-7">@Model.Owner</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Specifications</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Size</dt>
+                    <dd class="col-sm-7">@Model.Size</dd>
+                    <dt class="col-sm-5">Range</dt>
+                    <dd class="col-sm-7">@Model.Range</dd>
+                    <dt class="col-sm-5">Manufacturer</dt>
+                    <dd class="col-sm-7">@Model.Manufacturer</dd>
+                    <dt class="col-sm-5">Manufacture Date</dt>
+                    <dd class="col-sm-7">@Model.ManufactureDate?.ToString("d")</dd>
+                    <dt class="col-sm-5">Model No</dt>
+                    <dd class="col-sm-7">@Model.ModelNumber</dd>
+                    <dt class="col-sm-5">Equipment ID</dt>
+                    <dd class="col-sm-7">@Model.EquipmentId</dd>
+                    <dt class="col-sm-5">Location</dt>
+                    <dd class="col-sm-7">@Model.Location</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Calibration</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Cal. Frequency</dt>
+                    <dd class="col-sm-7">@Model.CalibrationFrequency @Model.CalibrationFrequencyType</dd>
+                    <dt class="col-sm-5">Cal. Procedure</dt>
+                    <dd class="col-sm-7">@Model.CalibrationProcedure</dd>
+                    <dt class="col-sm-5">Cal. Result</dt>
+                    <dd class="col-sm-7">@Model.CalibrationResult</dd>
+                    <dt class="col-sm-5">Cal. Certificate</dt>
+                    <dd class="col-sm-7">@Model.CalibrationCertificateNumber</dd>
+                    <dt class="col-sm-5">Next Cal Date</dt>
+                    <dd class="col-sm-7">@Model.NextCalibrationDate?.ToString("d")</dd>
+                    <dt class="col-sm-5">Calibration Date</dt>
+                    <dd class="col-sm-7">@Model.CalibrationDate?.ToString("d")</dd>
+                    <dt class="col-sm-5">Calibrated By</dt>
+                    <dd class="col-sm-7">@Model.CalibratedBy</dd>
+                    <dt class="col-sm-5">Location Calibrated</dt>
+                    <dd class="col-sm-7">@Model.LocationCalibrated</dd>
+                    <dt class="col-sm-5">Location of Records</dt>
+                    <dd class="col-sm-7">@Model.LocationOfRecords</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header">Lifecycle</div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">Received From</dt>
+                    <dd class="col-sm-7">@Model.ReceivedFrom</dd>
+                    <dt class="col-sm-5">Received Date</dt>
+                    <dd class="col-sm-7">@Model.ReceivedDate?.ToString("d")</dd>
+                    <dt class="col-sm-5">Maintenance Due</dt>
+                    <dd class="col-sm-7">@Model.MaintenanceDueDate?.ToString("d")</dd>
+                    <dt class="col-sm-5">Location</dt>
+                    <dd class="col-sm-7">@Model.Location</dd>
+                    <dt class="col-sm-5">Image</dt>
+                    <dd class="col-sm-7">@Model.ImagePath</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">Comments</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Comments</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">Instructions</div>
+            <div class="card-body">
+                <p class="mb-0">@Model.Instructions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 text-muted">
+    <small>Created @Model.CreatedAtUtc.ToLocalTime().ToString("f") &bull; Last updated @Model.UpdatedAtUtc.ToLocalTime().ToString("f")</small>
+</div>
