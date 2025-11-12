@@ -1,0 +1,159 @@
+@model AIProject.Models.Gauge
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="CustomerId" class="form-label"></label>
+        <select asp-for="CustomerId" asp-items="ViewBag.CustomerId" class="form-select"></select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="SerialNumber" class="form-label"></label>
+        <input asp-for="SerialNumber" class="form-control" />
+        <span asp-validation-for="SerialNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Type" class="form-label"></label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="SubType" class="form-label"></label>
+        <input asp-for="SubType" class="form-control" />
+        <span asp-validation-for="SubType" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Size" class="form-label"></label>
+        <input asp-for="Size" class="form-control" />
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Range" class="form-label"></label>
+        <input asp-for="Range" class="form-control" />
+        <span asp-validation-for="Range" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Manufacturer" class="form-label"></label>
+        <input asp-for="Manufacturer" class="form-control" />
+        <span asp-validation-for="Manufacturer" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ManufactureDate" class="form-label"></label>
+        <input asp-for="ManufactureDate" class="form-control" type="date" />
+        <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ModelNumber" class="form-label"></label>
+        <input asp-for="ModelNumber" class="form-control" />
+        <span asp-validation-for="ModelNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="EquipmentId" class="form-label"></label>
+        <input asp-for="EquipmentId" class="form-control" />
+        <span asp-validation-for="EquipmentId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationFrequency" class="form-label"></label>
+        <input asp-for="CalibrationFrequency" class="form-control" type="number" min="0" />
+        <span asp-validation-for="CalibrationFrequency" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationFrequencyType" class="form-label"></label>
+        <input asp-for="CalibrationFrequencyType" class="form-control" />
+        <span asp-validation-for="CalibrationFrequencyType" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationProcedure" class="form-label"></label>
+        <input asp-for="CalibrationProcedure" class="form-control" />
+        <span asp-validation-for="CalibrationProcedure" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="NextCalibrationDate" class="form-label"></label>
+        <input asp-for="NextCalibrationDate" class="form-control" type="date" />
+        <span asp-validation-for="NextCalibrationDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationResult" class="form-label"></label>
+        <input asp-for="CalibrationResult" class="form-control" />
+        <span asp-validation-for="CalibrationResult" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Status" class="form-label"></label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationCertificateNumber" class="form-label"></label>
+        <input asp-for="CalibrationCertificateNumber" class="form-control" />
+        <span asp-validation-for="CalibrationCertificateNumber" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ReceivedFrom" class="form-label"></label>
+        <input asp-for="ReceivedFrom" class="form-control" />
+        <span asp-validation-for="ReceivedFrom" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="ReceivedDate" class="form-label"></label>
+        <input asp-for="ReceivedDate" class="form-control" type="date" />
+        <span asp-validation-for="ReceivedDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibratedBy" class="form-label"></label>
+        <input asp-for="CalibratedBy" class="form-control" />
+        <span asp-validation-for="CalibratedBy" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CalibrationDate" class="form-label"></label>
+        <input asp-for="CalibrationDate" class="form-control" type="date" />
+        <span asp-validation-for="CalibrationDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="LocationCalibrated" class="form-label"></label>
+        <input asp-for="LocationCalibrated" class="form-control" />
+        <span asp-validation-for="LocationCalibrated" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="LocationOfRecords" class="form-label"></label>
+        <input asp-for="LocationOfRecords" class="form-control" />
+        <span asp-validation-for="LocationOfRecords" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="MaintenanceDueDate" class="form-label"></label>
+        <input asp-for="MaintenanceDueDate" class="form-control" type="date" />
+        <span asp-validation-for="MaintenanceDueDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Owner" class="form-label"></label>
+        <input asp-for="Owner" class="form-control" />
+        <span asp-validation-for="Owner" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="GaugeType" class="form-label"></label>
+        <input asp-for="GaugeType" class="form-control" />
+        <span asp-validation-for="GaugeType" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Uut" class="form-label"></label>
+        <input asp-for="Uut" class="form-control" />
+        <span asp-validation-for="Uut" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Comments" class="form-label"></label>
+        <textarea asp-for="Comments" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Instructions" class="form-label"></label>
+        <textarea asp-for="Instructions" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Instructions" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="ImagePath" class="form-label"></label>
+        <input asp-for="ImagePath" class="form-control" />
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+</div>

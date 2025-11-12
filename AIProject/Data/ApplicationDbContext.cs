@@ -15,6 +15,7 @@ namespace AIProject.Data
         }
 
         public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<Gauge> Gauges => Set<Gauge>();
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -31,17 +32,33 @@ namespace AIProject.Data
         private void ApplyAuditInformation()
         {
             var utcNow = DateTime.UtcNow;
-            foreach (var entry in ChangeTracker.Entries<Customer>())
+            foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.State == EntityState.Added)
+                if (entry.Entity is Customer customer)
                 {
-                    entry.Entity.CreatedAtUtc = utcNow;
-                    entry.Entity.UpdatedAtUtc = utcNow;
-                }
+                    if (entry.State == EntityState.Added)
+                    {
+                        customer.CreatedAtUtc = utcNow;
+                        customer.UpdatedAtUtc = utcNow;
+                    }
 
-                if (entry.State == EntityState.Modified)
+                    if (entry.State == EntityState.Modified)
+                    {
+                        customer.UpdatedAtUtc = utcNow;
+                    }
+                }
+                else if (entry.Entity is Gauge gauge)
                 {
-                    entry.Entity.UpdatedAtUtc = utcNow;
+                    if (entry.State == EntityState.Added)
+                    {
+                        gauge.CreatedAtUtc = utcNow;
+                        gauge.UpdatedAtUtc = utcNow;
+                    }
+
+                    if (entry.State == EntityState.Modified)
+                    {
+                        gauge.UpdatedAtUtc = utcNow;
+                    }
                 }
             }
         }
