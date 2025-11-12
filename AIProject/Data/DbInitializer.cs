@@ -3,6 +3,7 @@ using System.Linq;
 using AIProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AIProject.Data
 {
@@ -17,6 +18,8 @@ namespace AIProject.Data
             var roleManager = scopedProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             await context.Database.EnsureCreatedAsync();
+
+            await SeedCustomerMastersAsync(context);
 
             const string adminRole = "Administrator";
             if (!await roleManager.RoleExistsAsync(adminRole))
@@ -69,6 +72,44 @@ namespace AIProject.Data
             if (!await userManager.IsInRoleAsync(adminUser, adminRole))
             {
                 await userManager.AddToRoleAsync(adminUser, adminRole);
+            }
+        }
+
+        private static async Task SeedCustomerMastersAsync(ApplicationDbContext context)
+        {
+            if (!context.GenderOptions.Any())
+            {
+                context.GenderOptions.AddRange(
+                    new GenderOption { Name = "Female" },
+                    new GenderOption { Name = "Male" },
+                    new GenderOption { Name = "Non-binary" },
+                    new GenderOption { Name = "Prefer not to say" },
+                    new GenderOption { Name = "Other" });
+            }
+
+            if (!context.PreferredContactMethodOptions.Any())
+            {
+                context.PreferredContactMethodOptions.AddRange(
+                    new PreferredContactMethodOption { Name = "Email" },
+                    new PreferredContactMethodOption { Name = "Phone" },
+                    new PreferredContactMethodOption { Name = "SMS" },
+                    new PreferredContactMethodOption { Name = "Video call" },
+                    new PreferredContactMethodOption { Name = "In-person" });
+            }
+
+            if (!context.PreferredLanguageOptions.Any())
+            {
+                context.PreferredLanguageOptions.AddRange(
+                    new PreferredLanguageOption { Name = "English" },
+                    new PreferredLanguageOption { Name = "Spanish" },
+                    new PreferredLanguageOption { Name = "French" },
+                    new PreferredLanguageOption { Name = "German" },
+                    new PreferredLanguageOption { Name = "Mandarin" });
+            }
+
+            if (context.ChangeTracker.HasChanges())
+            {
+                await context.SaveChangesAsync();
             }
         }
     }

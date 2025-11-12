@@ -56,7 +56,7 @@ else
                     <td>@customer.Email</td>
                     <td>@customer.PhoneNumber</td>
                     <td>@customer.CompanyName</td>
-                    <td>@customer.PreferredContactMethod</td>
+                    <td>@customer.PreferredContactMethodOption?.Name</td>
                     <td>@customer.CreatedAtUtc.ToLocalTime().ToString("g")</td>
                     <td class="text-end">
                         <a asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-sm btn-outline-primary me-1">Edit</a>
